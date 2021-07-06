@@ -1,0 +1,20 @@
+{% unless grid_image_width %} 
+   {%- assign grid_image_width = '600x600' -%} 
+ {% endunless %} 
+ <div class="grid-view-item{% unless product.available %} product-price--sold-out grid-view-item--sold-out{% endunless %}"> 
+   <a class="grid-view-item__link {% if product.images.size > 1 %} has-secondary{% endif %}" href="{{ product.url | within: collection }}"> 
+     <img class="grid-view-item__image" src="{{ product.featured_image.src | img_url: grid_image_width }}" alt="{{ product.featured_image.alt }}"> 
+     {% if product.images.size > 1 %} 
+      <img class="secondary" src="{{ product.images.last | img_url: grid_image_width }}" alt="{{ product.images.last.alt | escape }}"> 
+     {% endif %} 
+     <h4 class="h4 grid-view-item__title product-card__title">{{ product.title }}</h4> 
+
+     <div class="grid-view-item__meta"> 
+       {% include 'product-price', variant: product %} 
+     </div> 
+   </a> 
+ </div> 
+<form method="post" action="/cart/add" class="shelf-button">
+  <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+  <input type="submit" value="Add to cart" class="btn" />
+</form>
