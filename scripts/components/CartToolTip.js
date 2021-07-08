@@ -45,7 +45,7 @@ export const CartToolTip = () => {
       {cart ? (
         <CartSummary order={cart} />
       ) : (
-        <p>Fetching cart...</p>
+        <p>Fetching cart..</p>
       )}
     </Popup>
   )
